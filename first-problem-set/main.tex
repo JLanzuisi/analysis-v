@@ -1,0 +1,141 @@
+\documentclass[letterpaper,12pt]{article} %Modifica el tipo de documento y el tamaño de la letra.
+\usepackage[shortlabels]{enumitem}
+\usepackage[spanish]{babel} 
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{wrapfig}
+\usepackage[rflt]{floatflt}
+\usepackage{graphicx}
+\usepackage{fancyhdr} %Paquete para el header y el formato de la portada. No sugiero borrarlo!
+\usepackage{float}
+\usepackage{cite}
+\usepackage[square,numbers]{natbib}
+\usepackage{caption}
+\usepackage{adjustbox}
+\usepackage{parskip}
+\usepackage[]{xcolor}
+\usepackage{xspace}
+
+
+
+%Fin de Préambulo
+
+
+%Inicio formato de Página. Puedes establecer medidas de la página y modificar el header.
+
+\textheight = 21cm %Medidas de la  página
+\textwidth = 18cm  %Medidas de la página
+\topmargin = -2cm  %Medidas de la página    
+\oddsidemargin = -0.8cm %Medidas de la página
+\pagestyle{fancy} %Diseño de la página
+
+
+\fancyhf{}
+\lhead{Departamento de Matemáticas}%%LeftHead
+\chead{\includegraphics[width=1cm, height=1cm]{Imágenes/usb1.png}}%%CenterHead
+%\lfoot{USB}
+\rhead{Lista 1}%%RightHead
+
+\setlength{\columnsep}{4mm}%Comandos para el formato de la página.
+%\setlength{\parindent}{4em}%Sangría al comenzar un nuevo párrafo.
+\setlength{\parindent}{0.5in}
+%\setlength{\parindent}{4em}%Sangría al comenzar un nuevo párrafo.
+\setlength{\parskip}{1em}%Distancia entre párrafos.
+\renewcommand{\baselinestretch}{1.5}% Espacio entre línea y línea o interlineado.
+\setlength{\headheight}{33pt}
+%\fancyfoot[CE,CO]{\LaTeX{}\\\thepage} %Logo de LaTeX y pie de página.
+
+%Fin formato de Página
+
+%Aquí inicia el documento. Date como magnate
+\begin{document}
+
+    %LaTeX te hace el índice automáticamente conforme añades secciones en tu documento.
+    \input{portada.tex}
+    \tableofcontents
+    \newpage
+%Inicio parte opcional. Esta parte la puedes quitar si deseas, es por si te piden formatos para
+%evidencias de certificación de los laboratorios con números de cuenta o te piden abstracts en tus %trabajos.
+
+\title{Análisis V \\\textbf{Lista de Ejercicios 1} \\ } 
+
+\author{
+  \normalsize{\texttt{Jhonny Lanzuisi}} \and
+  \normalsize{\texttt{1510759}}
+}
+\date{\today}
+\maketitle
+\thispagestyle{fancy}
+
+%Fin parte opcional
+
+\section{Enunciados}
+
+\begin{enumerate}
+    \item Una clase de conjunto $N$ es llamada \textbf{Normal} si es cerrada bajo intersecciones enumerables de conjuntos y cerrada por uniones enumerables disjuntas de conjuntos. Demuestre que un $\sigma -$anillo es una clase Normal.
+    \item Una $\sigma -$álgebra de conjuntos es definida como una clase no vacía de conjuntos que es cerrada bajo complementos y la unión enumerable de conjuntos. Muestre que una $\sigma -$álgebra es un $\sigma -$anillo que contiene a $X.$
+    \item Si $\mu^{*}$ es una medida métrica exterior entonces todo conjunto abierto es $\mu^{*} -$medible.
+    \item Si $E$ es un conjunto Lebesgue medible tal que, para cada $x$ en conjunto denso en casi todo punto $$\bar{\mu}\left ( E\Delta \left ( E+x \right ) \right )=0,$$ entonces $\bar{\mu}(E)=0$ ó $\bar{\mu}(E^{c})=0.$
+\end{enumerate}
+
+\section{Solución}
+
+\newcommand{\sring}{$\sigma -$anillo\xspace}
+
+\begin{enumerate}
+    \item%
+        Si $S$ es un \sring y si $E_i\in S$ para $i=1,2,\dots$
+        y $E=\bigcup_{i=1}^\infty E_i$ entonces:
+        \[
+            \bigcap_{i=0}^\infty E_i = E - \bigcup_{i=1}^\infty (E-E_i),
+        \]
+        de donde se sigue que $S$ es cerrado bajo intersecciones numerables,
+        pues los dos conjuntos de la diferencia, a la derecha de la igualdad,
+        pertenecen a $S$.
+
+        Como las uniones numerables de conjuntos disjuntos son un caso
+        particular de las uniones numerables de conjuntos, y $S$ es cerrado
+        respecto a estas últimas, se sigue que $S$ también es cerrado respecto
+        a las primeras.
+
+        Entonces, $S$ es una clase normal.
+
+    \item%
+        Sea $S$ un \sring y supongamos que $X\subset S$. Sea $E\in S$ entonces
+        $X-E=E'\in S$ debido a que $S$ es cerrado bajo las diferencias.
+        Además, como $S$ es un \sring se tiene que es cerrado bajo uniones numerables.
+
+        Se sigue entonces que $S$ es una $\sigma -$álgebra.
+
+    \item%
+        Sea $U$ un conjunto abierto y $A$ un subconjunto de $X$. Sea $E=A\cap U$. Sean
+        \[
+            E_n = E \bigcap \left\{x\colon \rho\,(x, U')\geq\dfrac{1}{n}\right\}
+        \]
+        para $n=1,2,\dots$.
+
+        Ahora $E_n \cup (A\cap U')$ son una secuencia de subconjuntos de $A$, pues cada
+        $E_n$ es un subconjunto de $A$ y $A\cap U'$ también lo es. A su vez, la union
+        \[
+            \bigcup_{i=0}^\infty E_n \cup (A\cap U')
+        \]
+        es un subconjunto de $A$, puesto que la union de los $E_n$ es $A\cap U$ por construcción.
+
+        Tenemos entonces que
+        \[
+            \mu^*(A)\geq\mu^*(E_n \cup (A\cap U')),
+        \]
+        y como $\rho\,(E_n, A\cap U')>0$, se sigue que
+        \[
+            \mu^*(A)\geq\mu^*(E_n)+\mu^*(A\cap U').
+        \]
+
+        Por ultimo, la construcción de los $E_n$ asegura que el $\lim_n E_n = E$
+        (Ver el libro de Halmos pag 48 (8a)). Por lo que al tomar límites se obtiene
+        \[
+            \mu^*(A)\geq\mu^*(A\cap U)+\mu^*(A\cap U'),
+        \]
+        y el conjunto abirto $U$ es $\mu^*-$medible.
+\end{enumerate}
+
+\end{document}
